@@ -34,3 +34,7 @@ class Category(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
         super(Category, self).save(*args, **kwargs)
 
+class Location(models.Model):
+    name = models.CharField(null=True, blank=True, max_length=30)
+
+    
