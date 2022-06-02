@@ -75,18 +75,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Travel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Nature</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Food</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Portrait</a>
-                    </li>
+                    {% for category in categories %}
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">{{category.title}}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -109,12 +102,9 @@
     <h3 class="text-center">Locations</h3>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 link-secondary" href="#">Accra</a>
-          <a class="p-2 link-secondary" href="#">China</a>
-          <a class="p-2 link-secondary" href="#">Wall Street</a>
-          <a class="p-2 link-secondary" href="#">Szeged</a>
-          <a class="p-2 link-secondary" href="#">Pecs</a>
-          <a class="p-2 link-secondary" href="#">Nairobi</a>
+            {% for location in locations %}
+                <a class="p-2 link-secondary" href="#">{{location.name}}</a>
+            {% endfor %}
         </nav>
       </div>
     </div>
