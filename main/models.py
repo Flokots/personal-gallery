@@ -76,13 +76,36 @@ class Image(models.Model):
     altText = models.TextField(null=True, blank=True, max_length=300)
 
     # Image Fields
-    squareImage = ResizedImageField(size=[1000,1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='')
-    landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='land')
-    tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='')
+    squareImage = ResizedImageField(size=[1000,1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')
+    landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='landscape')
+    tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='tall')
 
     # Related Fields
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)
 
+   
+   #utility variable
+    uniqueId = models.CharField(null=True, blank=True, max_length=100)
+    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    date_created = models.DateTimeField(blank=True, null=True)
+    last_updated = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.category.title, self.location.name, self.uniqueId)
     
+    def get_absolute_url(self):
+        return reverse('image-detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if self.date_created is None:
+            self.date_created = timezone.localtime(timezone.now())
+        
+        if self.uniqueId is None:
+            self.uniqueId = str(uuid4()).split('-')[4]
+            self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
+
+        self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
+        self.last_updated = timezone.localtime(timezone.now())
+        super(Location, self).save(*args, **kwargs)
     
