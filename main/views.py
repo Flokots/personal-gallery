@@ -5,8 +5,9 @@ from .models import Category, Location, Image
 def home(request):
     title = 'Home'
     categories = Category.objects.all()
-    
-    return render(request, 'base-templates/index.html', {"title":title, "categories": categories,})
+    locations = Location.objects.all()
+
+    return render(request, 'base-templates/index.html', {"title":title, "categories": categories, "locations": locations})
 
 
 def category_page(request):
