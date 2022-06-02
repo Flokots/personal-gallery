@@ -1,4 +1,5 @@
 from argparse import BooleanOptionalAction
+from email.policy import default
 from django.db import models
 from django.template.defaultfilters import slugify
 from django_resized import ResizedImageField
@@ -69,4 +70,19 @@ class Location(models.Model):
         self.delete()
     
 
+class Image(models.Model):
+    name = models.CharField(null=True, blank=True, max_length=100)
+    description = models.TextField(null=True, blank=True)
+    altText = models.TextField(null=True, blank=True, max_length=300)
+
+    # Image Fields
+    squareImage = ResizedImageField(size=[1000,1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='')
+    landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='land')
+    tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='')
+
+    # Related Fields
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)
+
+    
     
