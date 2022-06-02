@@ -103,9 +103,9 @@ class Image(models.Model):
         
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split('-')[4]
-            self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
+            self.slug = slugify('{} {}'.format(self.category.title, self.uniqueId))
 
-        self.slug = slugify('{} {}'.format(self.name, self.uniqueId))
+        self.slug = slugify('{} {}'.format(self.category.title, self.uniqueId))
         self.last_updated = timezone.localtime(timezone.now())
-        super(Location, self).save(*args, **kwargs)
+        super(Image, self).save(*args, **kwargs)
     
