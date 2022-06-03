@@ -3,7 +3,7 @@
 A django application that displays your photos in different categories taken from different locations for others to see.
 
 ### Demo
-Personal Gallery link
+[The Nightngale Personal Gallery](https://thenightngale-personal-gallery.herokuapp.com/)]
 
 ### Author
 [Florence Kotohoyoh](https://github.com/Flokots)
