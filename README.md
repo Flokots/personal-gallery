@@ -1,7 +1,6 @@
 # Personal Gallery
 
-A personal gallery application that displays your photos for others to see.
-
+A django application that displays your photos in different categories taken from different locations for others to see.
 
 ### Demo
 Personal Gallery link
@@ -29,8 +28,21 @@ Personal Gallery link
    ```
    pip install -r requirements.txt
    ```
-5. Run `python manage.py runserver` to run the application locally
-6. Have fun exploring!
+5. Create the database
+   ```
+   $ python
+   >>> psql;
+   >>> CREATE DATABASE database_name;
+   ```
+6. In the `settings.py` update the database configurations.
+7. Make initial migrations 
+   ```
+   python manage.py makemigrations main
+   python manage.py manage.py migrate
+   ```
+8. Run `python manage.py runserver` to run the application locally. View the app on the `localhost:8000'
+9. Run `python manage.py test main` to run the tests.
+10. Have fun exploring!
   
 ### Contributions
 Should you notice any bug or  want to add a feature, follow these steps to contribute:
@@ -39,6 +51,8 @@ Should you notice any bug or  want to add a feature, follow these steps to contr
 3. Make changes.
 4. Create a pull request.
 
+### Known Bugs
+Copy Link button not functional
 ### Contact
 florencekotohoyoh@gmail.com
 ### License
