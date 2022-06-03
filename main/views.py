@@ -6,8 +6,9 @@ def home(request):
     title = 'Home'
     categories = Category.objects.all()
     locations = Location.objects.all()
+    images = Image.objects.all()
 
-    return render(request, 'base-templates/index.html', {"title":title, "categories": categories, "locations": locations})
+    return render(request, 'base-templates/index.html', {"title":title, "categories": categories, "locations": locations, "images": images})
 
 
 def category_page(request, slug):
