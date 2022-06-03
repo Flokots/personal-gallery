@@ -35,18 +35,35 @@ class CategoryTestClass(TestCase):
         self.assertEqual(self.gardens.title, 'New Garden')
 
     
-    class LocationTestClass(TestCase):
+class LocationTestClass(TestCase):
         #Set up method
-        def setUp(self):
-            # Creating a new Location and saving it
-            self.new_location= Location(id=1, name='Nairobi')
+    def setUp(self):
+        # Creating a new Location and saving it
+        self.new_location= Location(id=1, name='Nairobi')
         
-        def tearDown(self):
-            Location.objects.all().delete()
+    def tearDown(self):
+        Location.objects.all().delete()
 
         
-        def test_instance(self):
-            self.assertTrue(isinstance(self.new_location, Location))
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_location, Location))
 
         
-       
+    def test_save_location(self):
+        self.new_location.save_location()
+        locations=Location.objects.all()
+        self.assertTrue(len(locations) > 0)
+    
+
+    def test_delete_location(self):
+        self.new_location.delete_location()
+        locations=Location.objects.all()
+        self.assertTrue(len(locations) == 0)
+    
+    def test_update_location(self):
+        self.new_location.name = 'Kisumu'
+        self.new_location.save_location()
+        self.assertEqual(self.new_location.name, 'Kisumu')
+
+
+
