@@ -13,14 +13,22 @@ def home(request):
 def category_page(request, slug):
     category = Category.objects.get(slug=slug)
     title=f'{Category.title}'
-    images = Image.objects.filter(category=category)
+    images = Image.objects.filter(category=category).order_by('-date_created')
+
+    for x in images:
+        x.shortDescription = x.description[:130]
+
    
-    return render(request, '', {"images": images, "category":category, "title":title})
+    return render(request, 'base-templates/category.html', {"images": images, "category":category, "title":title})
 
 
 def location_page(request, slug):
     location = Location.objects.get(slug=slug)
     title = f'{Location.name}'
-    images = Image.objects.filter(location=location)
+    images = Image.objects.filter(location=location).order_by('-date_created')
 
-    return render(request, '', {"location": location, "images": images, "title":title})
+    for x in images:
+        x.shortDescription = x.description[:130]
+
+    
+    return render(request, 'base-templates/location.html', {"location": location, "images": images, "title":title})

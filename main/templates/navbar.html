@@ -82,11 +82,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
+
                     {% for category in categories %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'image-category' category.slug %}">{{category.title}}</a>
                         </li>
                     {% endfor %}
+                    
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
