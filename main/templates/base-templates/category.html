@@ -33,22 +33,35 @@
 </head>
 
 <body>
-  {% include "navbar.html" %}
 
   {% block content%}
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+          viewBox="0 0 24 24">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+        <strong>Personal Gallery</strong>
+      </a>
+    </div>
+  </nav>
   <main>
     <section class="py-5 text-center container">
-      <div class="row py-lg-5">
+      <div class="row py-5" style="padding-bottom: 1em !important;">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Images in {{category.title}} category</h1>
+          <h1 class="fw-light">{{category.title}}</h1>
         </div>
       </div>
     </section>
+    
     <div class="album py-5 bg-light">
+      {% if images %}
       <div class="container">
-
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+          
           {% for image in images %}
           <div class="col">
             <div class="card shadow-sm">
@@ -56,7 +69,7 @@
 
               <div class="card-body">
                 <p class="card-text">
-                  {{image.shortDescription}} ...<a href="#">REad more</a>
+                  {{image.shortDescription}} ...<a href="#">Read more</a>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
@@ -70,9 +83,14 @@
             </div>
           </div>
           {% endfor %}
-
         </div>
       </div>
+      {% else %}
+    <div class="container no-images">
+      <h2 class="text-center">No Images to be Displayed </h2>
+    </div>
+    {% endif %}
+    </div>  
   </main>
   <footer class="blog-footer">
     <p>Built by

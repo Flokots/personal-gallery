@@ -1,5 +1,9 @@
+/* Show it is fixed to the top */
+body {
+    padding-top:0 !important;
+}
 .bd-placeholder-img {
-    font-size: 1.125rem;
+    font-size: 1.125em;
     text-anchor: middle;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -8,12 +12,12 @@
 
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+      font-size: 3.5em;
     }
   }
 
   .b-example-divider {
-    height: 3rem;
+    height: 3em;
     background-color: rgba(0, 0, 0, .1);
     border: solid rgba(0, 0, 0, .15);
     border-width: 1px 0;
@@ -22,7 +26,7 @@
 
   .b-example-vr {
     flex-shrink: 0;
-    width: 1.5rem;
+    width: 1.5em;
     height: 100vh;
   }
 
@@ -34,17 +38,52 @@
   .nav-scroller {
     position: relative;
     z-index: 2;
-    height: 2.75rem;
+    height: 2.75em;
     overflow-y: hidden;
   }
 
   .nav-scroller .nav {
     display: flex;
     flex-wrap: nowrap;
-    padding-bottom: 1rem;
+    padding-bottom: 1em;
     margin-top: -1px;
     overflow-x: auto;
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+  }
+  
+  /* Links inside the navbar */
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+  }
+  
+  /* Change background on mouse-over */
+  .navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
+  
+  /* Main content */
+  .main {
+    margin-top: 30px; /* Add a top margin to avoid content overlay */
+  }
+
+  .no-images {
+    margin-top: 3em;
+    text-align: center;
   }
