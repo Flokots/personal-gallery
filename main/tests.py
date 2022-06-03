@@ -124,4 +124,6 @@ class ImageTestClass(TestCase):
 
     
     def test_search_image_category(self):
-        pass
+        self.image = Image.objects.get(category=self.gardens)
+
+        self.assertEqual(self.image.name, 'Image')
