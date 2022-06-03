@@ -42,6 +42,16 @@ class Category(models.Model):
 
         return categories
 
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+    
+    def update_category(self):
+        Category.objects.filter(pk=self.id).update(title="New Title")
+        self.save()
+
 
 class Location(models.Model):
     name = models.CharField(null=True, blank=True, max_length=30)
@@ -76,6 +86,12 @@ class Location(models.Model):
     def delete_location(self):
         self.delete()
     
+      
+    def update_location(self):
+        Location.objects.filter(pk=self.id).update(name="New Location")
+        self.save()
+
+
 
 class Image(models.Model):
     name = models.CharField(null=True, blank=True, max_length=100)
@@ -116,3 +132,24 @@ class Image(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
         super(Image, self).save(*args, **kwargs)
     
+    
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+    
+      
+    def update_image(self):
+        Image.objects.filter(pk=self.id).update(name="New Name")
+        self.save()
+
+    @classmethod
+    def get_image_by_id(self, id):
+        image = Image.objects.filter(pk=id)
+        return image
+
+    @classmethod
+    def filter_by_location(self, location):
+        image = Image.objects.filter(location=location)
+        return image
