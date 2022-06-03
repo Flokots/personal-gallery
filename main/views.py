@@ -53,10 +53,12 @@ def search_results(request):
     if 'category' in request.GET and request.GET['category']:
         search_term = request.GET.get("category")
         searched_categories = Category.search_by_category(search_term)
+        category=searched_categories[:1]
+        images = Image.objects.filter(category=category).order_by('-date_created')
 
         message = f"{search_term}"
 
-        return render(request, "base-templates/search.html", {"message":message, "categories": searched_categories})
+        return render(request, "base-templates/search.html", {"message":message, "images": images, "categories": searched_categories,})
     else:
         message = "You haven't searched for any term"
         return render(request, 'base-templates/search.html', {"message": message})
