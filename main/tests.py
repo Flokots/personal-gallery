@@ -110,3 +110,18 @@ class ImageTestClass(TestCase):
         self.assertEqual(self.new_image.name, 'New Image')
         
 
+    def test_filter_by_location(self):
+        self.image = Image.objects.get(location=self.new_location)
+
+        self.assertEqual(self.image.name, 'Image')
+
+    
+    def test_get_image_by_id(self):
+        self.image = Image.objects.get(id=1)
+
+        self.assertEqual(self.image.name, 'Image')
+
+
+    
+    def test_search_image_category(self):
+        pass

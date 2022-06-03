@@ -141,15 +141,15 @@ class Image(models.Model):
     
       
     def update_image(self):
-        Image.objects.filter(pk=self.id).update(name="New Name")
+        Image.objects.get(pk=self.id).update(name="New Name")
         self.save()
 
     @classmethod
     def get_image_by_id(self, id):
-        image = Image.objects.filter(pk=id)
+        image = Image.objects.get(pk=id)
         return image
 
     @classmethod
     def filter_by_location(self, location):
-        image = Image.objects.filter(location=location)
+        image = Image.objects.get(location=location)
         return image
