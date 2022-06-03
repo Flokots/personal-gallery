@@ -103,5 +103,10 @@ class ImageTestClass(TestCase):
         self.new_image.delete()
         images = Image.objects.all()
         self.assertTrue(len(images) == 0)
+    
+    def test_update_method(self):
+        self.new_image.name = 'New Image'
+        self.new_image.save_image()
+        self.assertEqual(self.new_image.name, 'New Image')
         
 
