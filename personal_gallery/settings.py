@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://thenightngale-personal-gallery.herokuapp.com"]
 ROOT_URLCONF = 'personal_gallery.urls'
 
 TEMPLATES = [
