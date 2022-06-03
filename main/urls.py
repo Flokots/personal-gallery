@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns=[
     re_path(r'^$', views.home, name='home'),
+    re_path(r'^/category/<slug:slug>$', views.category_page, name='image-category'),
+    re_path(r'^/location/<slug:slug>$', views.location_page, name='image-location'),
 ]
 
 if settings.DEBUG:
