@@ -39,11 +39,11 @@ def category_image_detail(request, slug1, slug2):
     category = Category.objects.get(slug=slug1)
     image = Image.objects.get(slug=slug2)
     title = f'{Image.name} Details Page'
-    return render(request, '', {"category": category, "image": image, "title":title})
+    return render(request, 'base-templates/image.html', {"category": category, "image": image, "title":title})
 
 
 def location_image_detail(request, slug1, slug2):
     location = Location.objects.get(slug=slug1)
     image = Image.objects.get(slug=slug2)
     title = f'{Image.name} Details Page'
-    return render(request, '', {"location": location, "image": image, "title":title})
+    return render(request, 'base-templates/image.html', {"location": location, "image": image, "title":title})
