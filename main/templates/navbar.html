@@ -90,6 +90,7 @@
 
                 </ul>
                 <form class="d-flex" role="search" action="{% url 'search_results' %}">
+                    {% csrf_token %} 
                     <input class="form-control me-2" type="text" placeholder="Search Image Category" aria-label="Search" name="category">
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <a class="link-secondary" href="#" aria-label="Search">
