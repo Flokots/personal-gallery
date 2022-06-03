@@ -35,6 +35,13 @@ class Category(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
         super(Category, self).save(*args, **kwargs)
 
+    
+    @classmethod
+    def search_by_category(cls, search_term):
+        categories = cls.objects.filter(title__icontains=search_term)
+
+        return categories
+
 
 class Location(models.Model):
     name = models.CharField(null=True, blank=True, max_length=30)

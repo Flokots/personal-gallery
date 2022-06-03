@@ -47,3 +47,16 @@ def location_image_detail(request, slug1, slug2):
     image = Image.objects.get(slug=slug2)
     title = f'{Image.name} Details Page'
     return render(request, 'base-templates/image.html', {"location": location, "image": image, "title":title})
+
+
+def search_results(request):
+    if 'category' in request.GET and request.GET['category']:
+        search_term = request.GET.get("category")
+        searched_categories = Category.search_by_category(search_term)
+
+        message = f"{search_term}"
+
+        return render(request, "base-templates/search.html", {"message":message, "categories": searched_categories})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'base-templates/search.html', {"message": message})
