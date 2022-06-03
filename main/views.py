@@ -32,3 +32,18 @@ def location_page(request, slug):
 
     
     return render(request, 'base-templates/location.html', {"location": location, "images": images, "title":title})
+
+
+def category_image_detail(request, slug1, slug2):
+    
+    category = Category.objects.get(slug=slug1)
+    image = Image.objects.get(slug=slug2)
+    title = f'{Image.name} Details Page'
+    return render(request, '', {"category": category, "image": image, "title":title})
+
+
+def location_image_detail(request, slug1, slug2):
+    location = Location.objects.get(slug=slug1)
+    image = Image.objects.get(slug=slug2)
+    title = f'{Image.name} Details Page'
+    return render(request, '', {"location": location, "image": image, "title":title})
